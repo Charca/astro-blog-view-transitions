@@ -17,7 +17,7 @@ const category = categories.find(
 ) as Category;
 ---
 
-<div class="cursor-pointer group">
+<div class="cursor-pointer group article" data-category={category.slug}>
   <div
     class={cx(
       "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800",

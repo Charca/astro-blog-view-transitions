@@ -9,7 +9,7 @@ import { authors } from "@data/authors";
 import type { Author } from "@data/authors";
 
 type Props = {
-  post: CollectionEntry<"blog">
+  post: CollectionEntry<"blog">;
 };
 
 export async function getStaticPaths() {
@@ -30,7 +30,6 @@ const author = authors.find((item) => item.slug === post.data.author) as Author;
   title={post.data.title}
   desc={post.data.excerpt}
   ogimage={post.data.image}>
-
   <PostHeader post={post} author={author} />
 
   <div
