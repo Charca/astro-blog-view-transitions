@@ -1,13 +1,12 @@
 ---
+import { CollectionEntry, getCollection } from "astro:content";
 import { Picture } from "@astrojs/image/components";
 import Authorcard from "@components/authorcard.astro";
 import Container from "@components/container.astro";
-import { authors } from "@data/authors";
-import Layout from "@layouts/Layout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
-
-import type { Author } from "@data/authors";
 import PostHeader from "@components/postheader.astro";
+import Layout from "@layouts/Layout.astro";
+import { authors } from "@data/authors";
+import type { Author } from "@data/authors";
 
 type Props = {
   post: CollectionEntry<"blog">
