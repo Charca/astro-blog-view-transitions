@@ -1,0 +1,64 @@
+---
+import { Image } from "@astrojs/image/components";
+import Container from "@components/container.astro";
+import Label from "@components/ui/label.astro";
+import { categories } from "@data/category";
+import { getFormattedDate } from "@utils/all";
+import type { Category } from "@data/category";
+
+const { author, post } = Astro.props;
+const { remarkPluginFrontmatter } = await post.render();
+
+const category = categories.find(
+  (item) => item.slug === post.data.category
+) as Category;
+---
+
+<Container>
+  <div class="max-w-screen-md mx-auto">
+    <div class="text-center">
+      <Label theme={category.color}>{category.title}</Label>
+    </div>
+
+    <h1
+      class="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+      {post.data.title}
+    </h1>
+
+    <div class="flex justify-center mt-3 space-x-3 text-gray-500">
+      <div class="flex items-center gap-3">
+        <div class="relative flex-shrink-0 w-10 h-10">
+          {
+            author.image && (
+              <Image
+                src={author.image}
+                alt="Author Photo"
+                width={80}
+                height={80}
+                loading="eager"
+                class="rounded-full"
+              />
+            )
+          }
+        </div>
+
+        <div>
+          <p class="text-gray-800 dark:text-gray-400">
+            {author.name}
+          </p>
+          <div class="flex items-center space-x-2 text-sm">
+            <time
+              class="text-gray-500 dark:text-gray-400"
+              datetime={`${post.data.publishDate}`}>
+              {getFormattedDate(post.data.publishDate)}
+            </time>
+            <span>
+              · {Math.round(remarkPluginFrontmatter?.estReadingTime) || "5"} min
+              read
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Container>
