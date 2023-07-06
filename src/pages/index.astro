@@ -22,3 +22,24 @@ import { latestPosts } from "@utils/content";
     </main>
   </Container>
 </Layout>
+
+<script>
+  document.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const el = e.currentTarget;
+      // @ts-ignore
+      const img = el.querySelector("img");
+      const transitionName = img.style.viewTransitionName;
+      const articles = document.querySelectorAll(".article");
+
+      articles.forEach((article) => {
+        // @ts-ignore
+        article.style.viewTransitionName = "";
+        // @ts-ignore
+        article.querySelector("img").style.viewTransitionName = "";
+      });
+
+      img.style.viewTransitionName = transitionName;
+    });
+  });
+</script>

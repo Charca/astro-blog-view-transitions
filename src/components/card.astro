@@ -17,7 +17,10 @@ const category = categories.find(
 ) as Category;
 ---
 
-<div class="cursor-pointer group article" data-category={category.slug}>
+<div
+  class="cursor-pointer group article"
+  data-category={category.slug}
+  style={`view-transition-name: card-${post.slug}`}>
   <div
     class={cx(
       "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800",
@@ -34,6 +37,7 @@ const category = categories.find(
             alt="Thumbnail"
             loading={preloadImage ? "eager" : "lazy"}
             class="w-full h-full rounded-md"
+            style={`view-transition-name: img-${post.slug}`}
           />
         ) : (
           <span class="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
