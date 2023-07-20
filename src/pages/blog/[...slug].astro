@@ -46,6 +46,7 @@ const author = authors.find((item) => item.slug === post.data.author) as Author;
           alt="Thumbnail"
           loading="eager"
           class="w-full"
+          style={`view-transition-name: img-${post.slug}`}
         />
       )
     }

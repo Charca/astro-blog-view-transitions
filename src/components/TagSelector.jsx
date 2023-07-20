@@ -15,9 +15,24 @@ function TagSelector() {
 
   useEffect(() => {
     const articles = document.querySelectorAll("#latest-articles .article");
-    // TODO Implement filtering
-    // 1. For each article, if selection is not empty or the selection includes the article's category, remove hidden class
-    // 2. Otherwise, add class hidden
+
+    function filterArticles() {
+      articles.forEach((article) => {
+        if (!selection.length || selection.includes(article.dataset.category)) {
+          article.classList.remove("hidden");
+        } else {
+          article.classList.add("hidden");
+        }
+      });
+    }
+
+    if ("startViewTransition" in document) {
+      document.startViewTransition(() => {
+        filterArticles();
+      });
+    } else {
+      filterArticles();
+    }
   }, [selection]);
 
   return (
